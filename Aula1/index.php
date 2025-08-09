@@ -55,16 +55,26 @@ if ($nota >= 7) {
 
 // Estrutura for
 
-for($i=1; $i<5; $i++) {
-    echo('<p> Contagem:' . $i . '</p>');
+for ($i = 1; $i < 5; $i++) {
+    echo ('<p> Contagem:' . $i . '</p>');
 }
 
 // Funcção
 
-function saudacao($nome) {
-    return 'Olá $nome'; 
+function saudacao($nome)
+{
+    return 'Olá $nome';
 }
 
 echo "<p align='center'>" . saudacao($primeiro_nome) . "</p>";
 
-?>
+
+// Basic validation for idade
+//if ($idade < 18) {
+//    $validacao = false;
+//    echo "<div class='alert alert-danger m-3' role='alert'>Idade must be 18 or older.</div>";
+//} else if ($idade >= 18) {
+//    echo "<div class='alert alert-success m-3' role='alert'>Form submitted successfully!</div>";
+//} else {
+//    echo "";
+//}

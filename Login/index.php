@@ -10,21 +10,21 @@
 </head>
 
 <body>
+    <h1 class="text-center">Welcome to the Login Page</h1>
     <!-- Simple HTML form to collect user input -->
     <form method="POST" action="index.php" class="m-3">
         <fieldset>
-            <legend>Document</legend>
             <div class="mb-2">
-                <label for="disabledTextInput" class="form-label">Name:</label>
-                <input type="text" id="name" class="form-control" placeholder="Enter your name" name="name">
+                <label for="disabledTextInput" class="form-label">Username:</label>
+                <input type="text" id="name" class="form-control" placeholder="Enter your name" name="name" required>
             </div>
             <div class="mb-2">
                 <label for="disabledTextInput" class="form-label">Email:</label>
-                <input type="text" id="email" class="form-control" placeholder="Enter your email" name="email">
+                <input type="text" id="email" class="form-control" placeholder="Enter your email" name="email" required>
             </div>
             <div class="mb-3">
-                <label for="disabledTextInput" class="form-label">Idade:</label>
-                <input type="number" id="idade" class="form-control" placeholder="Enter your idade" name="idade">
+                <label for="disabledTextInput" class="form-label">Password:</label>
+                <input type="text" id="password" class="form-control" placeholder="Enter your password" name="password" required>
             </div>
             <div class="mb-2">
                 <div class="form-check">
@@ -41,23 +41,19 @@
 
     <!-- PHP code to handle form submission -->
     <?php
+    
     $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
     $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
-    $idade = isset($_POST['idade']) ? (int)$_POST['idade'] : null;
+    $password = isset($_POST['password']) ? htmlspecialchars($_POST['password']) : '';
     $validacao = true;
 
-    // Basic validation for idade
-    if ($idade < 18) {
-        $validacao = false;
-        echo "<div class='alert alert-danger m-3' role='alert'>Idade must be 18 or older.</div>";
-    } else if ($idade >= 18) {
+    // Basic validation for empty fields
+    if (!empty($name) && !empty($email) && !empty($password)) {
         echo "<div class='alert alert-success m-3' role='alert'>Form submitted successfully!</div>";
     } else {
-        echo "";
+        $validacao = false;
+        echo "<div class='alert alert-danger m-3' role='alert'>Please fill in all fields.</div>";
     }
-
-    // Display the submitted in screen
-    echo  "<p>" . $name . " " . $email . " " . $idade . "</p>";
     ?>
 
 </body>

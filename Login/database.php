@@ -1,8 +1,8 @@
 <?php
 $servidor = 'localhost';
-$banco = '';
+$banco = 'php_miguel';
 $usuario = 'root';
-$senha = 'root';
+$senha = '';
 
 try {
     $pdo = new PDO("mysql:host=$servidor; dbname=$banco; charset=utf8", $usuario, $senha);

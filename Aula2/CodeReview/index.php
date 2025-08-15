@@ -50,11 +50,11 @@ echo '<ul>';
 // $tarefas(principal) salvar para $tarefa para impressão em formato de uma tabela(<ul>)
 
 foreach($tarefas as $tarefa) {
-    $classe_css = $tarefa['concluida'] ? 'color: green, text-decoration: line-through;' : 'color: red'; // CSS in PHP 
+    $classe_css = $tarefa['concluida'] ? 'color: green; text-decoration: line-through;' : 'color: red'; // CSS in PHP 
     $status_texto = $tarefa['concluida'] ? '[Concluida]' : '[Pendente]';
 
     echo "<li style='$classe_css'>" . $tarefa['descricao'] . "" . $status_texto . "</li>";
 }
-
+                                                                                                                                                                                                                                                                                                                                                                       
 echo '</ul>';
 ?>

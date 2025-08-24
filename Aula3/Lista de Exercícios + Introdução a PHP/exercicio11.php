@@ -4,19 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercicio 1 / Verificar se o número é par ou ímpar.</title>
+    <title>Exercicio 11/ Verificar se uma palavra é um palíndromo (ex: “arara”).</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <h1 style="position: relative; left:10px">Verificar se o número é par ou ímpar.</h1>
-    <form method="POST" action="exercicio1.php" class="m-3">
+    <h1 style="position: relative; left:10px">Verificar se uma palavra é um palíndromo (ex: “arara”).</h1>
+    <form method="POST" action="exercicio11.php" class="m-3">
         <fieldset>
-            <input type="text" id="num1" class="form-control" name="num1" required>
+            <input type="text" id="str" class="form-control" name="str" required>
             <br>
-            <!--<input type="text" id="num2" class="form-control" name="num2" required>
-            <br>-->
             <button type="submit" class="btn btn-primary">Verifique aqui</button>
         </fieldset>
     </form>
@@ -26,7 +24,7 @@
         margin: 20px;
     }
 
-    #num1 {
+    #str {
         width: 250px;
     }
 </style>
@@ -37,14 +35,15 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $num1 = isset($_POST['num1']) ? (int)$_POST['num1'] : 0;
+    $str = isset($_POST['str']) ? $_POST['str'] : '';
 
-    if ($num1 % 2 == 0) {
-        echo "<p style='position: relative; left:10px'>O número $num1 é par.</p>";
-    } else {
-        echo "<p style='position: relative; left:10px'>O número $num1 é ímpar.</p>";
+    function isPalindromo($str) {
+        $str = preg_replace('/[^a-zA-Z0-9]/', '', strtolower($str));
+        return $str === strrev($str);
     }
-}
 
+    echo "<p style='position: relative; left:10px'>A palavra <strong>'$str'</strong> " . (isPalindromo($str) ? "é" : "não é") . " um palíndromo.</p>";
+
+}
 
 ?>

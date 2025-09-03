@@ -86,6 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Verifica se o formulário foi env
             </div>
 
             <button type="submit" class="btn btn-primary" name="login">Cadastre-se aqui</button>
+            <a href="login.php" class="btn btn-link">Já possui uma conta</a>
             <?php
             if ($error) {
                 echo '<div class="alert alert-danger mt-3" role="alert">' . htmlspecialchars($error) . '</div>';

@@ -4,7 +4,7 @@ USE sciep_2025_miguelrcha;
 
 
 CREATE TABLE professor(
-	id_professor INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	id_professor INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
 	nome_professor VARCHAR(87) NOT NULL,
     email_professor VARCHAR(87) NOT NULL,
     password_professor VARCHAR(87) NOT NULL

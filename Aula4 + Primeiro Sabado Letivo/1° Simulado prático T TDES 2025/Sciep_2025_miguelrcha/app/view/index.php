@@ -33,16 +33,17 @@ $nome_professor = $dados["nome_professor"];
 <body>
 
     <div class="container">
-    <?php
+        <br>
+        <?php
         echo "<h1>Olá, $nome_professor! </h1>";
-    ?>
+        ?>
 
         <h2>Turma - SAEP</h2>
 
-        <button type="submit" class="btn btn-primary" name="criar_turma">Cadastrar Turma</button>
-        <button type="submit" class="btn btn-primary" name="criar_turma">Visualizar Turma</button>
-        <button type="submit" class="btn btn-primary" name="criar_turma">Atualizar Turma</button>
-        <button type="submit" class="btn btn-danger" name="criar_turma">Deletar Turma</button>
+        <a href="cadastrar.php"><button type="submit" class="btn btn-primary" name="criar_turma">Cadastrar Turma</button></a>
+        <a href="visualizar.php"><button type="submit" class="btn btn-primary" name="criar_turma">Visualizar Turma</button></a>
+        <a href="atualizar.php"><button type="submit" class="btn btn-primary" name="criar_turma">Atualizar Turma</button></a>
+        <a href="deletar.php"><button type="submit" class="btn btn-danger" name="criar_turma">Deletar Turma</button></a>
         <a href="logout.php" class="btn btn-danger">Logout</a>
     </div>
 

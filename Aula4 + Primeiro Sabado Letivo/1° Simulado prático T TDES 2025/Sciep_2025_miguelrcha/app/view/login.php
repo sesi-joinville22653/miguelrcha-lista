@@ -5,7 +5,7 @@ require_once '../model/bd.php'; // Inclui o arquivo de conexão com o banco de d
 session_start(); // Inicia a sessão
 
 if (isset($_SESSION["email"])) { // Verifica se o usuário já está logado
-    header('Location: turma.php'); // Redireciona para a página inicial
+    header('Location: index.php'); // Redireciona para a página inicial
     exit;
 }
 
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Verifica se o formulário foi env
 
             $_SESSION["email"] = $dados["email_professor"]; // Armazena o email na sessão
             $_SESSION["name"] = $dados["nome_professor"]; // Armazena o nome na sessão
-            header('Location: turma.php'); // Redireciona para a página inicial
+            header('Location: index.php'); // Redireciona para a página inicial
             exit;
         } else {
             $error = "Email ou senha inválidos."; // Mensagem de erro

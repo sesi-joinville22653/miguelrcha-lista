@@ -1,7 +1,7 @@
 <?php
 $host = "localhost"; // Padronizar
 $username = "root"; // Padronizar
-$password = "root"; // Padronizar 
+$password = ""; // Padronizar 
 $dbname = "sciep_2025_miguelrcha"; // Padronizar | {CREATE DATABASE sciep_2025_miguelrcha};
 
 $conn = new mysqli($host, $username, $password, $dbname); // Cria a conexão para o MySQL

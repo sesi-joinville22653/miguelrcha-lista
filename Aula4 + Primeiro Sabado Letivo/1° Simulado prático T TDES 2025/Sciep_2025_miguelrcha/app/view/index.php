@@ -38,13 +38,20 @@ $nome_professor = $dados["nome_professor"];
         echo "<h1>Olá, $nome_professor! </h1>";
         ?>
 
+        <h2>Início - SAEP</h2>
+
+        <a href="cadastrar.php"><button type="submit" class="btn btn-primary" name="criar_turma">Cadastrar</button></a>
+        <a href="visualizar.php"><button type="submit" class="btn btn-primary" name="criar_turma">Visualizar</button></a>
+        <a href="atualizar.php"><button type="submit" class="btn btn-primary" name="criar_turma">Atualizar </button></a>
+        <a href="deletar.php"><button type="submit" class="btn btn-danger" name="criar_turma">Deletar </button></a>
+        <a href="logout.php" class="btn btn-danger">Logout</a>
+        <br><br>
+
         <h2>Turma - SAEP</h2>
 
-        <a href="cadastrar.php"><button type="submit" class="btn btn-primary" name="criar_turma">Cadastrar Turma</button></a>
-        <a href="visualizar.php"><button type="submit" class="btn btn-primary" name="criar_turma">Visualizar Turma</button></a>
-        <a href="atualizar.php"><button type="submit" class="btn btn-primary" name="criar_turma">Atualizar Turma</button></a>
-        <a href="deletar.php"><button type="submit" class="btn btn-danger" name="criar_turma">Deletar Turma</button></a>
-        <a href="logout.php" class="btn btn-danger">Logout</a>
+        <!-- Formulário para cadastrar turma -->
+
+        <button type="submit" class="btn btn-primary" name="login">Cadastrar Turma</button>
     </div>
 
 </body>

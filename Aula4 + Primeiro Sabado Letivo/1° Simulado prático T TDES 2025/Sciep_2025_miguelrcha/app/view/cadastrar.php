@@ -18,6 +18,67 @@ $resultado = $stmt->get_result();
 $dados = $resultado->fetch_assoc();
 $nome_professor = $dados["nome_professor"];
 // Exibe o nome do professor logado
+
+
+
+// <?php
+require_once 'bd.php';
+session_start();
+if (!isset($_SESSION["email"])) {
+    header('Location: login.php');
+    exit;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["cadastrar_turma"])) {
+        $nome_turma = trim($_POST["nome_turma"] ?? "");
+        $email_professor = $_SESSION["email"];
+
+        // Buscar o id do professor pelo email
+        $stmt_prof = $conn->prepare("SELECT id_professor FROM professor WHERE email_professor = ?");
+        $stmt_prof->bind_param("s", $email_professor);
+        $stmt_prof->execute();
+        $result_prof = $stmt_prof->get_result();
+        $row_prof = $result_prof->fetch_assoc();
+        $id_professor = $row_prof['id_professor'] ?? null;
+
+        if ($id_professor) {
+            $stmt = $conn->prepare("INSERT INTO turma (nome_turma, fk_id_professor) VALUES (?, ?)");
+            $stmt->bind_param("si", $nome_turma, $id_professor);
+
+            if ($stmt->execute()) {
+                echo "<h2>Turma cadastrada com sucesso!</h2>";
+                echo '<a href="index.php">Voltar para a página inicial</a>';
+                exit;
+            } else {
+                echo "<h2>Erro ao cadastrar turma: " . $stmt->error . "</h2>";
+            }
+        } else {
+            echo "<h2>Erro: Professor não encontrado.</h2>";
+        }
+    }
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Cadastrar Turma</h2>
+    <form action="cadastrar_turma.php" method="post">
+        <label for="nome_turma">Nome da turma:</label>
+        <input type="text" id="nome_turma" name="nome_turma" required><br><br>
+        <button type="submit" name="cadastrar_turma">Cadastrar Turma</button>
+    </form>
+    <br>
+    <a href="index.php">Voltar para a página inicial</a>    
+</body>
+</html>
 ?>
 
 

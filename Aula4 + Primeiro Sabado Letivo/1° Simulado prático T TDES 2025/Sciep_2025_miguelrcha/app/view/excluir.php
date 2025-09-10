@@ -9,26 +9,16 @@ if (!isset($_SESSION["email"])) {
     exit;
 }
 
-// quero excluir na minha linha pelo id_turma 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["confirmar_exclusao"])) {
-        $id_turma = $_POST["id_turma"] ?? "";
+        $id_turma = trim($_POST["id_turma"] ?? "");
 
-        // Verificar se existem atividades relacionadas à turma
-        $checkStmt = $conn->prepare("SELECT COUNT(*) FROM atividade WHERE fk_id_turma = ?");
-        $checkStmt->bind_param("i", $id_turma);
-        $checkStmt->execute();
-        $checkStmt->bind_result($count);
-        $checkStmt->fetch();
-        $checkStmt->close();
-
-        if ($count > 0) {
-            echo "<h2>Não é possível excluir a turma porque existem atividades relacionadas a ela.</h2>";
-            echo '<a href="index.php">Voltar para a página inicial</a>';
+        // Validação simples para garantir que o id_turma é um número
+        if (!is_numeric($id_turma) || empty($id_turma)) {
+            echo "<h2>ID de turma inválido.</h2>";
             exit;
         }
 
-        // Preparar e executar a consulta para excluir a turma
         $stmt = $conn->prepare("DELETE FROM turma WHERE id_turma = ?");
         $stmt->bind_param("i", $id_turma);
 
@@ -39,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "<h2>Erro ao excluir turma: " . $stmt->error . "</h2>";
         }
+        $stmt->close();
     }
 }
 

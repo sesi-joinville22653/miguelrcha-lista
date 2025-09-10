@@ -35,12 +35,12 @@ $nome_professor = $dados["nome_professor"];
     <div class="container">
         <br>
         <?php
-        echo "<h1>Olá, $nome_professor! </h1>";
+        echo "<h1>Olá, Professor(a) $nome_professor! </h1>";
         ?>
 
         <h2>Turma - SAEP</h2>
-
-        <a href="logout.php" class="btn btn-danger" style="position: relative; top:4px">Logout</a>
+        <span>Acesse as turmas ou as cadastre a partir desta seção</span>
+        <a href="logout.php" class="btn btn-danger" style="position: relative; top:43px; right:375px">Logout</a>
         <div class="container-cadastrar_turma" style="margin-left: 1080px; position: relative; left: 75px;">
             <a href="cadastrar.php"><button type="submit" class="btn btn-primary" name="cadastrar_turma">Cadastrar Turma</button></a>
         </div>

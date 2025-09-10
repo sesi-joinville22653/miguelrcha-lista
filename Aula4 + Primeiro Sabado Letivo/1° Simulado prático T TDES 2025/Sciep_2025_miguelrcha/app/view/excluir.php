@@ -19,6 +19,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
 
+        // Primeiro, excluir atividades relacionadas à turma
+        $stmt_atividade = $conn->prepare("DELETE FROM atividade WHERE fk_id_turma = ?");
+        $stmt_atividade->bind_param("i", $id_turma);
+        if (!$stmt_atividade->execute()) {
+            echo "<h2>Erro ao excluir atividades relacionadas: " . $stmt_atividade->error . "</h2>";
+            $stmt_atividade->close();
+            exit;
+        }
+        $stmt_atividade->close();
+
+        // Agora, excluir a turma
         $stmt = $conn->prepare("DELETE FROM turma WHERE id_turma = ?");
         $stmt->bind_param("i", $id_turma);
 

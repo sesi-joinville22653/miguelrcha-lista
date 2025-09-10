@@ -9,15 +9,35 @@ if (!isset($_SESSION["email"])) {
     exit;
 }
 
-// pegar o nome do professor logado
-$email = $_SESSION["email"];
-$stmt = $conn->prepare("SELECT nome_professor FROM professor WHERE email_professor = ?");
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$resultado = $stmt->get_result();
-$dados = $resultado->fetch_assoc();
-$nome_professor = $dados["nome_professor"];
-// Exibe o nome do professor logado
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["cadastrar_turma"])) {
+        $nome_turma = trim($_POST["nome_turma"] ?? "");
+        $email_professor = $_SESSION["email"];
+
+        $stmt_prof = $conn->prepare("SELECT id_professor FROM professor WHERE email_professor = ?");
+        $stmt_prof->bind_param("s", $email_professor);
+        $stmt_prof->execute();
+        $result_prof = $stmt_prof->get_result();
+        $row_prof = $result_prof->fetch_assoc();
+        $id_professor = $row_prof['id_professor'] ?? null;
+
+        if ($id_professor) {
+            $stmt = $conn->prepare("INSERT INTO turma (nome_turma, fk_id_professor) VALUES (?, ?)");
+            $stmt->bind_param("si", $nome_turma, $id_professor);
+
+            if ($stmt->execute()) {
+                echo "<h2>Turma cadastrada com sucesso!</h2>";
+                echo '<a href="index.php">Voltar para a página inicial</a>';
+                exit;
+            } else {
+                echo "<h2>Erro ao cadastrar turma: " . $stmt->error . "</h2>";
+            }
+        } else {
+            echo "<h2>Erro: Professor não encontrado.</h2>";
+        }
+    }
+}
+
 ?>
 
 
@@ -36,6 +56,18 @@ $nome_professor = $dados["nome_professor"];
     <div class="container">
         <br>
         <h2>Cadastrar Item - SAEP</h2>
+
+        <form method="POST" action="cadastrar.php" class="m-3"> <!-- Formulário de login feito com bootstrap -->
+            <fieldset>
+
+                <div class="mb-2">
+                    <label for="disabledTextInput" class="form-label">Nome da Turma:</label>
+                    <input type="text" id="nome_turma" name="nome_turma" class="form-control" placeholder="Nome da Turma">
+                </div>
+                <button type="submit" class="btn btn-primary" name="cadastrar_turma">Cadastrar Turma</button>
+                <a href="index.php" class="btn btn-secondary">Voltar</a>
+            </fieldset>
+        </form>
     </div>
 </body>
 

@@ -27,7 +27,7 @@ $nome_professor = $dados["nome_professor"];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <title>Turma</title>
+    <title>Turma - SAEP</title>
 </head>
 
 <body>
@@ -40,7 +40,7 @@ $nome_professor = $dados["nome_professor"];
 
         <h2>Turma - SAEP</h2>
 
-        <a href="logout.php" class="btn btn-danger" style="position: relative; top:40px">Logout</a>
+        <a href="logout.php" class="btn btn-danger" style="position: relative; top:4px">Logout</a>
         <div class="container-cadastrar_turma" style="margin-left: 1080px; position: relative; left: 75px;">
             <a href="cadastrar.php"><button type="submit" class="btn btn-primary" name="cadastrar_turma">Cadastrar Turma</button></a>
         </div>

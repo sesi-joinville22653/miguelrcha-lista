@@ -1,7 +1,6 @@
 <?php
 require_once '../model/bd.php';
 
-// Pegar o nome de quem acesosu o login com Ola, nome_professor
 session_start();
 
 if (!isset($_SESSION["email"])) {
@@ -13,13 +12,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["confirmar_exclusao"])) {
         $id_turma = trim($_POST["id_turma"] ?? "");
 
-        // Validação simples para garantir que o id_turma é um número
+       // Validar o ID da turma
         if (!is_numeric($id_turma) || empty($id_turma)) {
             echo "<h2>ID de turma inválido.</h2>";
             exit;
         }
 
-        // Primeiro, excluir atividades relacionadas à turma
+        // Excluir atividades relacionadas antes de excluir a turma
         $stmt_atividade = $conn->prepare("DELETE FROM atividade WHERE fk_id_turma = ?");
         $stmt_atividade->bind_param("i", $id_turma);
         if (!$stmt_atividade->execute()) {
@@ -29,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $stmt_atividade->close();
 
-        // Agora, excluir a turma
+        // Excluir a turma
         $stmt = $conn->prepare("DELETE FROM turma WHERE id_turma = ?");
         $stmt->bind_param("i", $id_turma);
 

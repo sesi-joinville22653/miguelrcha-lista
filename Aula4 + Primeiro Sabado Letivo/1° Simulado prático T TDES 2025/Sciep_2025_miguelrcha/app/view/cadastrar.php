@@ -9,6 +9,16 @@ if (!isset($_SESSION["email"])) {
     exit;
 }
 
+$email = $_SESSION["email"];
+$stmt = $conn->prepare("SELECT nome_professor FROM professor WHERE email_professor = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$resultado = $stmt->get_result();
+$dados = $resultado->fetch_assoc();
+$nome_professor = $dados["nome_professor"];
+// Exibe o nome do professor logado
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["cadastrar_turma"])) {
         $nome_turma = trim($_POST["nome_turma"] ?? "");
@@ -54,6 +64,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <div class="container">
+        <br>
+        <?php
+        echo "<h1>Olá, Professor(a) $nome_professor! </h1>";
+        ?>
         <br>
         <h2>Cadastrar Item - SAEP</h2>
 

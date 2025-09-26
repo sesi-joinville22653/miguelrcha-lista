@@ -16,6 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") { // Verifica se o formulário foi env
         $email = trim($_POST["email"] ?? ""); // Pega o email do formulário
         $password = trim($_POST["password"] ?? ""); // Pega a senha do formulário
 
+        // Fazer a senha ser no minimo 8 caracteres
+        if (strlen($password) < 8) {
+            $error = "A senha deve ter no mínimo 8 caracteres.";
+        }
+
         $stmt = $conn->prepare("SELECT * FROM professor WHERE email_professor = ? AND password_professor = ?"); // Prepara a consulta SQL
         $stmt->bind_param("ss", $email, $password); // ss = string, string, vincula os parâmetros
         $stmt->execute(); // Executa a consulta

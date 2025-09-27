@@ -2,7 +2,12 @@
 // Edição com erro de lógica (não busca o ID corretamente)
 include("conexao.php");
 
-$id = $_GET["id"];
+$id = isset($_GET["id"]) ? $_GET["id"] : null;
+
+if ($id === null) {
+    die("ID não especificado.");
+}
+
 $sql = "SELECT * FROM usuarios WHERE id = $id";
 $res = mysqli_query($conn, $sql);
 $dado = mysqli_fetch_assoc($res);

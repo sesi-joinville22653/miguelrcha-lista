@@ -13,3 +13,5 @@ while ($linha = mysqli_fetch_array($resultado)) {
 }
 ?>
 <a href='cadastrar.php'>Cadastrar novo</a>
+<a href='editar.php'>Editar usuário</a>
+<a href='excluir.php'>Excluir usuário</a>
